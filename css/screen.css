@@ -67,6 +67,13 @@
     /*  = 48px */
     --global-whitespace-xxl: calc(var(--global-whitespace) * 3);
     /*  = 72px */
+
+    --global-input-backgroundColor: White;
+    --global-input-color: var(--global-color-neutral-xxxx-dark);
+    --global-input-borderColor: var(--global-color-neutral-xxx-light);
+    --global-input-hover-borderColor: var(--global-color-neutral-xx-light);
+    --global-input-focus-borderColor: var(--global-color-alpha);
+    --global-input-boxShadow: 0 0 0 3px var(--global-color-alpha-x-transparent);
 }
 
 /*------------------------------------*\
@@ -601,10 +608,10 @@ input::placeholder {
     -moz-appearance: none;
     appearance: none;
     width: 100%;
-    border: var(--global-borderWidth) solid var(--global-color-neutral-xxx-light);
+    border: var(--global-borderWidth) solid var(--global-input-borderColor);
     border-radius: var(--global-borderRadius);
-    color: var(--global-color-neutral-xxxx-dark);
-    background-color: White;
+    color: var(--global-input-color);
+    background-color: var(--global-input-backgroundColor);
     font-family: inherit;
     font-size: 16px;
     line-height: calc(var(--global-baseline) * 3);
@@ -628,6 +635,120 @@ input::placeholder {
 .c-option {
     margin-right: var(--global-whitespace-sm);
 }
+
+.c-custom-option{
+    display: flex;
+    --custom-option-borderColor: var(--global-input-borderColor);
+    --custom-option-focus-borderColor: var(--global-input-focus-borderColor);
+}
+
+.c-custom-option__fake-input{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--custom-option-borderColor);
+    margin-right: 8px;
+}
+
+
+.c-custom-option__fake-input:hover{
+    border-color: #81ADF0;
+}
+
+.c-option--hidden:focus+.c-label .c-custom-option__fake-input {
+    border-color: #81ADF0;
+    box-shadow: var(--global-input-boxShadow);
+}
+
+.c-custom-option__symbol{
+    opacity: 0;
+    display: block;
+    transition: opacity var(--global-transitionTiming-alpha);
+}
+
+
+.c-custom-option__fake-input--checkbox{
+    border-radius: 3px;
+}
+
+
+.c-custom-option__fake-input--radio{
+    border-radius: 100%;
+}
+
+.c-custom-option__fake-input--checkbox .c-custom-option__symbol {
+    width: 10px;
+    height: 10px;
+    fill: var(--global-color-alpha);
+}
+
+.c-custom-option__fake-input--radio .c-custom-option__symbol {
+    width: 6px;
+    height: 6px;
+    background-color: var(--global-color-alpha); 
+    border-radius: 100%;   
+}
+
+.c-option--hidden:checked+.c-custom-option {
+    background-color: white
+}
+
+.c-option--hidden:checked+.c-custom-option .c-custom-option__symbol {
+    fill: #3385FF;
+    opacity: 1;
+}
+
+.c-option-list{
+    margin-bottom: 24px;
+}
+
+.c-option-list__item{
+        margin-bottom: 12px;
+}
+
+.c-custom-toggle{
+    display: flex;
+}
+
+.c-custom-toggle__fake-input{
+    display: block;
+    width: 48px;
+    height: 24px;
+    border: 1px solid #E2E3E7;
+    background-color: var(--global-color-neutral-xxxx-light);
+    border-radius: 24px;
+}
+
+.c-custom-toggle__fake-input::after{
+    content: "";
+    display: block;
+    width: 22px;
+    height: 22px;
+    border-radius: 100%;
+    background-color: white;
+    border-color: black;
+    box-shadow: 0 1px 3px#B5B6C0;
+    transition: all var(--global-transitionTiming-alpha);
+    
+}
+
+.c-option--hidden:checked+.c-custom-toggle .c-custom-toggle__fake-input::after{
+    transform: translateX(24px)
+    
+}
+
+.c-option--hidden:checked+.c-custom-toggle .c-custom-toggle__fake-input{
+    background-color: #3385FF;
+}
+
+.c-option--hidden:focus+.c-custom-toggle .c-custom-toggle__fake-input{
+    border-color: #81ADF0;
+    box-shadow: var(--global-input-boxShadow);
+}
+
+
 
 /*
     Component: Label
@@ -678,6 +799,32 @@ input::placeholder {
 .c-button:active {
     background-color: var(--global-color-alpha-dark);
     box-shadow: none;
+}
+
+.c-toggle-list__item{
+    margin-bottom: 12px;
+    padding-top: 12px;
+}
+
+.c-toggle__label--inverted{
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.c-custom-select{
+    position: relative;
+    fill: #B5B6C0;
+}
+
+.c-custom-select__symbol{
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    right: 12px;
+    top: 0px;
+    pointer-events: none;
 }
 
 /*------------------------------------*\
