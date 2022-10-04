@@ -20,6 +20,9 @@
 
 :root {
     /* colors */
+    --global-page-color: var(--color-neutral-xxxx-dark);
+    --global-page-backgroundColor: var(--color-neutral-xxxx-light);
+
     --global-color-alpha-h: 216deg;
     --global-color-alpha-s: 100%;
     --global-color-alpha-l: 60%;
@@ -76,6 +79,16 @@
     --global-input-boxShadow: 0 0 0 3px var(--global-color-alpha-x-transparent);
 }
 
+@media (prefers-color-scheme: dark) {
+    :root {
+        --global-input-color: white;
+        --global-page-color: White;
+        --global-page-backgroundColor: var(--color-neutral-xxxx-dark);
+        --global-input-borderColor: var(--global-color-neutral-xxxx-dark);
+        --global-color-input: var(--global-color-neutral-xxxx-dark);
+    }
+}
+
 /*------------------------------------*\
 #GENERIC
 \*------------------------------------*/
@@ -89,11 +102,23 @@
 html {
     line-height: 1.5;
     font-family: "Inter Web", Helvetica, arial, sans-serif;
-    color: var(--global-color-neutral-xxxx-dark);
-    background-color: var(--global-color-neutral-xxxx-light);
+    color: var(--global-page-color);
+    background-color: var(--global-page-backgroundColor);
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+@media (prefers-color-scheme: dark) {
+    html {
+        background-color: var(--global-color-neutral-xxxx-dark);
+    }
 }
 
 *,
@@ -240,6 +265,12 @@ input {
 
 input::placeholder {
     color: var(--global-color-neutral-x-light);
+}
+
+@media (prefers-color-scheme: dark) {
+    input::placeholder {
+        color: var(--global-color-neutral-dark);
+    }
 }
 
 /*------------------------------------*\
@@ -535,6 +566,14 @@ input::placeholder {
     fill: var(--global-color-alpha-x-dark);
 }
 
+@media (prefers-color-scheme: dark) {
+    .c-logo {
+        --logo__path--1--fill: White;
+        --logo__path--2--fill: var(--logo__path--1--fill);
+        --logo__path--3--fill: var(--logo__path--1--fill);
+    }
+}
+
 /*
     Component: Card
     ---
@@ -549,6 +588,12 @@ input::placeholder {
     overflow: hidden;
 }
 
+@media (prefers-color-scheme: dark) {
+    .c-card {
+        background-color: var(--global-color-neutral-xxx-dark);
+    }
+}
+
 /* Add padding to child for more flexibility */
 .c-card__body,
 .c-card__footer {
@@ -558,6 +603,12 @@ input::placeholder {
 .c-card__footer {
     text-align: center;
     border-top: var(--global-borderWidth) solid var(--global-color-neutral-xxx-light);
+}
+
+@media (prefers-color-scheme: dark) {
+    .c-card__footer {
+        border-top-color: var(--global-color-neutral-xxxx-dark);
+    }
 }
 
 .c-card__title {
@@ -618,6 +669,13 @@ input::placeholder {
     padding: calc(var(--global-baseline) * 1.5 - var(--global-borderWidth)) var(--global-whitespace-md);
     outline: none;
     transition: border var(--global-transition-timing-alpha);
+}
+
+@media (prefers-color-scheme: dark) {
+    .c-input {
+        border-color: var(--global-color-neutral-xxx-dark);
+        background-color: var(--global-color-neutral-xxxx-dark);
+    }
 }
 
 .c-input:hover {
@@ -762,6 +820,16 @@ input::placeholder {
     padding-bottom: var(--global-whitespace-xs);
     line-height: calc(var(--global-baseline) * 2);
     color: var(--global-color-neutral-xx-dark);
+}
+
+.c-label--option {
+    padding-bottom: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+    .c-label {
+        color: var(--global-color-neutral-x-light);
+    }
 }
 
 .c-label--option {
